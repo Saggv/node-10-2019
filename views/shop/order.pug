@@ -1,0 +1,23 @@
+extends ../layout/mainLayout.pug
+block styles
+    link(href="/css/main.css" rel="stylesheet")
+    title Order
+block content
+     each data in Data
+        h2 #{data.user.name}
+        .grid
+            each item in data.products
+                div
+                    a(href="order/"+data._id) invoice
+                    article.card.cartProduct-item
+                        header.carder__header
+                            h1.cartProduct__title #{item.product.title} ( #{item.quality} )
+                        div.card__image
+                            img(src=item.product.imageUrl)
+                        div.card__content
+                            h2.cartProduct__price  $#{item.product.price}
+                            p.cartProduct__description #{item.product.description} 
+                        div.card__action
+                            form(action="/order/delete" method="POST")
+                                input(type="hidden"  value=data._id name="orderId")
+                                button.add-delete(type="submit") Delete

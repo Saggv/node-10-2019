@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+html(lan="en")
+    meta(charset="UTF-8")
+    meta( name="viewport" content="width=device-width, initial-scale=1.0")
+    meta( http-equiv="X-UA-Compatible" content="ie=edge")
+    link(rel="stylesheet" href="/css/product.css")
+    link(rel="stylesheet" href="/css/main.css")
+    title Detail Product #{data.title}
+
+    body
+        div.box
+            h1.product__title #{data.title}
+            .box-image
+                img(src='/'+data.imageUrl)
+            .box-detail
+                h3.price $#{data.price}
+                p.description #{data.description}
+            div.card__action
+                button.add Add to card

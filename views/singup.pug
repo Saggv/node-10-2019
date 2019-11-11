@@ -1,0 +1,18 @@
+extends layout/mainLayout.pug
+block styles
+    link(rel="stylesheet" href="/css/main.css")
+    link(rel="stylesheet" href="/css/product.css")
+block content
+    form.login-form( action="/singup" method="POST")
+        div.form-control
+            if(msgErr)
+                h5.error #{msgErr}
+            label.form__title Name
+            input.form__input(type="text" name="name" )
+            label.form__title Email
+            input.form__input(type="text" name="email" )
+            label.form__title Password
+            input.form__input(type="password" name="password")
+            label.form__title Config Passord
+            input.form__input(type="password" name="Cfpassword")
+        button.btn(type="submit") Sing Up

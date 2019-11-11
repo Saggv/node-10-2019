@@ -1,0 +1,33 @@
+extends ../layout/mainLayout.pug
+block styles
+    link(href="/css/main.css" rel="stylesheet")
+block content
+    if(cartProduct.length > 0)
+        .grid
+            each item in cartProduct
+                article.card.cartProduct-item
+                    header.carder__header
+                        h1.cartProduct__title #{item.idProduct.title} ( #{item.quality} )
+                    div.card__image
+                        img(src=item.idProduct.imageUrl)
+                    div.card__content
+                        h2.cartProduct__price  $#{item.idProduct.price}
+                        p.cartProduct__description #{item.idProduct.description} 
+                    div.card__action
+                        form(action="/cart" method="POST")
+                            input(type="hidden"  value=item.idProduct._id name="idProduct")
+                            button.add(type="submit") Increase
+                        form(action="/cart/delete" method="POST")
+                            input(type="hidden"  value=item.idProduct._id name="idcartProduct")
+                            button.add-delete(type="submit") Delete
+                        form(action="/cart/decrease" method="POST")
+                            input(type="hidden"  value=item.idProduct._id name="idcartProduct")
+                            button.add(type="submit") Decrease
+        .boxOrder
+            //- form(action="/order", method="POST")
+            //-     button.add(type="submit") Order Products
+            a.add(href="/shop/checkout") Order Products
+            hr
+
+    else
+        h1 No cartProduct here

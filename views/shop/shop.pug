@@ -1,0 +1,20 @@
+extends ../layout/mainLayout.pug
+block styles 
+    link(href="/css/main.css" rel="stylesheet")
+block content
+    if(product.length > 0)
+        .grid
+            each item in product
+                article.card.product-item
+                    header.carder__header
+                        h1.product__title #{item.title}
+                    div.card__image
+                        img(src = item.imageUrl)
+                    div.card__content
+                        h2.product__price  #{item.price}
+                        p.product__description #{item.description}
+                    div.card__action
+                        button.add Add to card
+    else
+        h1 No product here
+

@@ -1,0 +1,30 @@
+extends ../layout/mainLayout.pug
+block styles
+    link(href="/css/main.css" rel="stylesheet")
+    link(href="/css/product.css" rel="stylesheet")
+
+block content
+    .grid
+        each item in cartProduct
+            article.card.cartProduct-item
+                header.carder__header
+                    h1.cartProduct__title #{item.idProduct.title} ( #{item.quality} )
+                div.card__image
+                    img(src='/'+item.idProduct.imageUrl)
+                div.card__content
+                    h2.cartProduct__price  $#{item.idProduct.price}
+                    p.cartProduct__description #{item.idProduct.description} 
+    .boxOrder
+        button.add Total #{total}
+        form(action="/order" method="POST")
+            script(
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_kP3EQuAKM3VG22r8ZyH0Z7Ig009EdbT34U"
+                data-amount= total*100
+                data-name="Your orders"
+                data-description="All the items you order"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="auto"
+                data-currency="usd"
+            )
+    hr

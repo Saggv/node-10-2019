@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+html(lan="en")
+    meta(charset="UTF-8")
+    meta( name="viewport" content="width=device-width, initial-scale=1.0")
+    meta( http-equiv="X-UA-Compatible" content="ie=edge")
+    title #{title}
+    block styles
+    body
+        header.header
+            nav.header__nav
+                ul.header__list
+                    li.header__items
+                        a(href="/" class=(path === "/" ? "active" : "" ))  Shop
+                    li.header__items
+                        a(href="/shop/product" class=(path === "/shop/product" ? "active" :"")) Products
+                    if(isLogin)
+                        li.header__items
+                            a(href="/cart" class=(path==="/cart" ?"active" : "")) Card
+                        li.header__items
+                            a(href="/order" class=(path==="/order" ?"active" : "")) Order
+                        li.header__items
+                            a(href="/admin/add-product" class=(path === "/admin/add-product" ? "active" : "")) Add Product
+                        li.header__items
+                            a(href="/admin/product" class=(path ==="/admin/product" ? "active" : "") ) Admin product
+                        li.header__items.header__login
+                            form(action="/logout", method="POST")
+                                button.logout Logout
+                    if(!isLogin)
+                        li.header__items.header__login
+                            a(href="/login") Login
+                        li.header__items.header__login
+                            a(href="/singup") Singup
+
+                 
+        main
+            block content

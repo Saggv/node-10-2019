@@ -1,0 +1,21 @@
+extends ../layout/mainLayout.pug
+block styles 
+     title #{title}
+     link( rel="stylesheet" href="/css/main.css")
+     link(rel="stylesheet" href="/css/product.css")
+block content
+     form.product-form( action= edit ? "/admin/edit-product" : "/admin/add-product" method="POST" enctype="multipart/form-data" )
+          div.form-control
+               if(msgErr)
+                    h5.error #{msgErr}
+               label.form__title Title
+               input.form__input(type="text" name="title" value= edit ?data.title :"")
+               label.form__title Image 
+               input.form__input(type="file" name="image")
+               label.form__title Price
+               input.form__input(type="number" sted="0.01" name="price"  value= edit ? data.price : value="")
+               label.form__title Description
+               textarea.form__input( rows="7" name="description") #{edit ? data.description : ""}
+          if(edit)
+               input(type="hidden", value=data.id name="id")
+          button.btn(type="submit") #{edit ? "Update Product" : "Add products"} 

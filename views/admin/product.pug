@@ -1,0 +1,24 @@
+extends ../layout/mainLayout.pug
+block styles 
+    link(href="/css/main.css" rel="stylesheet")
+    title #{title}
+block content
+    if(product.length > 0)
+        .grid
+            each item in product
+                article.card.product-item
+                    header.carder__header
+                        h1.product__title #{item.title}
+                    div.card__image
+                        img(src='/'+item.imageUrl)
+                    div.card__content
+                        h2.product__price  $ #{item.price}
+                        p.product__description #{item.description} 
+                    div.card__action
+                        a.btn-edit(href="/admin/edit-product/"+item.id +"?edit=true") Edit
+                        form(method="POST" action="/admin/delete-product")
+                            input(type="hidden" value=item.id name="id")
+                            button.btn-delete(type="submit") Delete
+    else
+        h1 No product here
+
